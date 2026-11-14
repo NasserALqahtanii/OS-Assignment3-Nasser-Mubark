@@ -133,15 +133,28 @@
 ## Your Development Log
 
 ### Entry 1 - [Date and Time]
-**What I did**:
+**What I did**: 
+1- I set my student id in
+2-I use Git clone 
+3-I implemented Feature 1:I added a RentrantLock to ReadyQueue and protcted
+4-I ran the program and checked the output
+5-I committed and pushed Feature 1 to GitHub
+                
 
 **Details**:
+1-Forked the starter repository and renamed it
+2-Changed student ID on line 304 to my actual ID (445050133)
+3-Committed and pushed: Set my student ID: 445050133
 
 **Challenges**:
+1-The Git: Clone command did not appear in VS Code
+2- Errors appeared in my code red error and mistakes
 
-**Solution**:
+**Solution**:Clone:
+1-Clone: Restricted Mode ← Trust
+2- I used AI which helped me and explained the mistakes to me and I fixed them
 
-**Time spent**:
+**Time spent**:40 mint
 
 ---
 
