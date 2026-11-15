@@ -160,14 +160,19 @@
 
 ### Entry 2 - [Date and Time]
 **What I did**:
+1-I defined three locks of type ReentrantLock: contextSwitchLock, completedLock and serviceTimeLock
 
 **Details**:
+1-I used them to protect the three update methods and the three getters in SharedStats
+2-I ran the program once and the first three verification lines were correct
+3-I committed and pushed Feature 2
 
 **Challenges**:
-
+1-I could not remember how to write the lock (the lock() / try / finally { unlock() } pattern)
+2-I did not understand some parts of the code
 **Solution**:
-
-**Time spent**:
+I used AI to fix syntax mistakes and understand some of the code.
+**Time spent**:35 minutes
 
 ---
 
