@@ -179,13 +179,19 @@ I used AI to fix syntax mistakes and understand some of the code.
 ### Entry 3 - [Date and Time]
 **What I did**:
 
+I implemented Feature 3: I replaced the busy waiting with a counting semaphore.
 **Details**:
+1-I added import java.util.concurrent.Semaphore;
+2-I declared public final Semaphore processesInQueue = new Semaphore(0);
+3-In add(), I called processesInQueue.release(); after the queue lock is released
+4-In CpuWorker.run(), I deleted the polling code (if (thread == null), Thread.sleep(20) and the busyWaitPolls increment) and replaced it with acquire()
 
 **Challenges**:
+4 errors appeared and the brackets got mixed up.
 
 **Solution**:
-
-**Time spent**:
+I removed the extra } and used AI to fix syntax mistakes and understand some of the code
+**Time spent**:40 minutes
 
 ---
 
@@ -258,7 +264,11 @@ I used AI to fix syntax mistakes and understand some of the code.
 
 **Your Answer:** *(5-7 sentences)*
 
-[Write your answer here.]
+I learned that synchronization is the fundamental mechanism that coordinates 
+concurrent processes to prevent race conditions and I understood that it regulates
+access to critical sections using tools like locks to keep data from getting
+corrupted. And that we watch out for deadlock issues to keep systems running. For 
+example, before I added the context switch lock, the context switch count was 32, and after I added it, the count became 33
 
 ## Question 2: What was the most challenging part of this assignment?
 
@@ -266,7 +276,11 @@ I used AI to fix syntax mistakes and understand some of the code.
 
 **Your Answer:** *(5-7 sentences)*
 
-[Write your answer here.]
+The feature I struggled with the most was Feature 3 because I had to edit in
+more than one place and delete more than one thing For example, I edited the import 
+and the semaphore declaration then in CpuWorker I deleted the polling, added 
+acquire(), and then added the shutdown
+ The large amount of code was confusing me, and I faced many mistakes when writing it so I used to turn to AI to correct them for me.
 
 ## Question 3: How did you overcome the challenges you faced?
 
@@ -282,7 +296,8 @@ I used AI to fix syntax mistakes and understand some of the code.
 
 **Your Answer:** *(5-7 sentences)*
 
-[Write your answer here.]
+Synchronization can be used in banks and in tickets of any kind: airline tickets, train tickets, and cinema tickets .
+ It is also used in online orders, like Amazon: if there is only one product left and I order it while another person orders it at the same time. In the Amazon example, the tool that solves the problem is the lock, and you explained it to us, Doctor, in the lecture, with the same example.
 
 ### Optional: What would you like to learn more about?
 
