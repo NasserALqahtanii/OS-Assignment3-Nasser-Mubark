@@ -429,13 +429,13 @@ condition making sure threads always wait on empty or full before locking mutex
 ## Summary
 
 **Key concepts I understood through these questions:**
-1.
-2.
-3.
+1.How ReentrantLock prevents race conditions and why getters also need to be locked.
+2.Using separate locks for independent stats reduces thread contention.
+3.Using a Semaphore stops busy waiting, and signaling all CPUs at the end avoids a hang.
 
 **Concepts I need to study more:**
-1.
-2.
+1.Fair vs. unfair locking in ReentantLock and how it affects bounded wating.
+2.Avoiding deadlocks when combining multiple locks and semaphores.
 
 ---
 
