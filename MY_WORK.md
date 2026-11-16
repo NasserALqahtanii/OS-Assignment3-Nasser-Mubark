@@ -42,7 +42,7 @@
 
 ## 🎥 Video Link
 
-**Video Link**: [Paste your video link here]
+**Video Link**: [https://drive.google.com/file/d/1v6JXYkujjzgq5BBZDba6tc8Q1KreQ9t4/view?usp=drive_link]
 
 > ⚠️ **WARNING:** The video must be **publicly accessible** ("Anyone with the link can view") on **Google Drive**, **YouTube (Unlisted or Public)** or any other cloud file-sharing system. A private, restricted or broken link counts as a **missing video (-1 mark)**.
 >
@@ -214,14 +214,17 @@ I reviewed my code in SchedulerSimulationSync.java along with the tips in MY_WOR
 
 ### Entry 5 - [11/16]
 **What I did**:
+Recorded the demo video, uploaded it, and finished MY_WORK.md
 
 **Details**:
+Showed my GitHub repo, explained the three features and how locks prevent race conditions, and ran the code in VS Code. 
+Named the file 445050133_Assignment3_Demo.mp4 made the link public, and added it to MY_WORK.md
 
 **Challenges**:
-
+Covering everything in 2–3 minutes without talking too fast.
 **Solution**:
-
-**Time spent**:
+Wrote down the line numbers before recording and practiced once to check the time
+**Time spent**:40 miunts
 
 ---
 
