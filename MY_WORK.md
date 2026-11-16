@@ -385,7 +385,7 @@ I protected the ReadyQueue (list and map) with queueLock, and the three counters
 
 | Critical section (variable / method) | Lock used | Why it needs protection |
 |---|---|---|
-| | ReadyQueue add, poll, processOf and snapshot | the lock in ReadyQueue | they read and change the shared list and map |
+| ReadyQueue add, poll, processOf and snapshot | the lock in ReadyQueue | they read and change the shared list and map |
 | incrementContextSwitch and its getter | contextSwitchLock | read, then write on contextSwitchCount |
 | incrementCompletedProcess and its getter | completedProcessLock | read, then write on completedProcessCount |
 | addServiceTime and its getter | serviceTimeLock | read, then write on totalServiceTime |
