@@ -36,7 +36,7 @@
 | **Student ID** | [445050133] |
 | **University Email** | [445050133]@std.psau.edu.sa |
 | **GitHub Username** | [NasserALqahtanii] |
-| **Repository Link** | [[Paste your repository link here](https://github.com/NasserALqahtanii/OS-Assignment3-Nasser-Mubark)] |
+| **Repository Link** | https://github.com/NasserALqahtanii/OS-Assignment3-Nasser-Mubark |
  
 ---
 
@@ -132,7 +132,7 @@
 
 ## Your Development Log
 
-### Entry 1 - [Date and Time]
+### Entry 1 - [11/14 ]
 **What I did**: 
 1- I set my student id in
 2-I use Git clone 
@@ -158,7 +158,7 @@
 
 ---
 
-### Entry 2 - [Date and Time]
+### Entry 2 - [11/15]
 **What I did**:
 1-I defined three locks of type ReentrantLock: contextSwitchLock, completedLock and serviceTimeLock
 
@@ -176,7 +176,7 @@ I used AI to fix syntax mistakes and understand some of the code.
 
 ---
 
-### Entry 3 - [Date and Time]
+### Entry 3 - [11/15]
 **What I did**:
 
 I implemented Feature 3: I replaced the busy waiting with a counting semaphore.
@@ -195,20 +195,24 @@ I removed the extra } and used AI to fix syntax mistakes and understand some of 
 
 ---
 
-### Entry 4 - [Date and Time]
+### Entry 4 - [11/16]
 **What I did**:
-
+1-Completed the Technical Answers (Part C) in MY_WORK.md
 **Details**:
-
+1- Answered all four technical questions in Part C based on my own code and simulation output.
+2- In Question 1, I compared the original starter output with my final verification block
+3- In Question 2, I filled out the critical sections table and explained why I used separate locks for each counter in SharedStats.
+4- Staged, committed, and pushed MY_WORK.md to GitHub via the terminal.
 **Challenges**:
-
+1- Explaining the exact Producer-Consumer roles and the bounded-buffer deadlock scenario in clear English.
+2- Connecting my code implementation details to the theoretical concepts in each question.
 **Solution**:
-
-**Time spent**:
+I reviewed my code in SchedulerSimulationSync.java along with the tips in MY_WORK.md, and used AI to help clarify the concepts and organize my answers before pushing the commit.
+**Time spent**: 1 hour
 
 ---
 
-### Entry 5 - [Date and Time]
+### Entry 5 - [11/16]
 **What I did**:
 
 **Details**:
@@ -238,14 +242,15 @@ I removed the extra } and used AI to fix syntax mistakes and understand some of 
 
 > 💡 **TIP:** Fill this in **last**, after all entries are written.
 
-**Total time spent on assignment**: [X hours]
+**Total time spent on assignment**: [ 3 hours]
 
 **Most challenging part**:
+Entry 3 was the most challenging part
 
 **Most interesting learning**:
-
+Seeing how the context switch count changed from 32 to 33 after adding the lock
 **What I would do differently next time**:
-
+I would start earlier so I have more time, and test each small change right away so I do not make syntax or bracket mistakes.
 ---
 
 # Part B: Reflection (0.5 mark)
@@ -341,21 +346,20 @@ Expected Total service time: 78500 ms
 
 Verification block of the **original starter**:
 ```
-? WATCHDOG: the simulation did not finish (38 s). A process was lost, or a CPU is blocked forever, or the 'completed' counter lost an update.
-
- Context switches (quanta executed)     expected 33       observed 33       ✓
+  Context switches (quanta executed)     expected 33       observed 30       ? MISMATCH
+  Completed processes                    expected 17       observed 16       ? MISMATCH
+  Total service time (ms)                expected 78500    observed 71607    ? MISMATCH
+  Busy-waiting polls (must be 0)         expected 0        observed 1165     ? MISMATCH
+  ? At least one check failed (see the ? lines above): a race condition or busy waiting is still present.
+```
+Verification block of **my final version**:
+```
+Context switches (quanta executed)     expected 33       observed 33       ✓
 Completed processes                    expected 17       observed 17       ✓
 Total service time (ms)                expected 78500    observed 78500    ✓
 Busy-waiting polls (must be 0)         expected 0        observed 0        ✓
 ✓ All shared values are consistent.
 
-Verification block of **my final version**:
-```
-Context switches (quanta executed): expected 33
-Completed processes: expected 17
-Total service time (ms): expected 78500
-Busy-waiting polls (must be 0): expected 0
-All shared values are consistent
 ```
 
 **Explanation of the timeline:**
