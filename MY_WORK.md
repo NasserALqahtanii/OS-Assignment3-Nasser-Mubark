@@ -32,11 +32,11 @@
 
 | Field | Your Answer |
 |-------|-------------|
-| **Full Name** | [Write your full name here] |
-| **Student ID** | [Write your student ID here] |
-| **University Email** | [yourid]@std.psau.edu.sa |
-| **GitHub Username** | [your-github-username] |
-| **Repository Link** | [Paste your repository link here] |
+| **Full Name** | [Nasser Mubark] |
+| **Student ID** | [445050133] |
+| **University Email** | [445050133]@std.psau.edu.sa |
+| **GitHub Username** | [NasserALqahtanii] |
+| **Repository Link** | [[Paste your repository link here](https://github.com/NasserALqahtanii/OS-Assignment3-Nasser-Mubark)] |
  
 ---
 
@@ -288,8 +288,9 @@ acquire(), and then added the shutdown
 
 **Your Answer:** *(5-7 sentences)*
 
-[Write your answer here.]
-
+I overcame the challenges I faced by re-reading the README file, with a little 
+help from AI, and the AI explaining things to me. Another difficulty I faced was 
+that I am slow at typing, and I have limited time. I overcame it by dividing my time.
 ## Question 4: Where can synchronization concepts be applied in real-world applications?
 
 > 💡 **TIP:** Use real applications you know (banking and money transfers, ticket or seat booking, a shared counter on a website, a print queue, a database) and connect each one to what you built here (shared data, critical section, lock or semaphore).
@@ -331,16 +332,30 @@ Synchronization can be used in banks and in tickets of any kind: airline tickets
 
 **Your Answer:** *(3-5 sentences)*
 
-[Write your answer here.]
+Time Quantum: 3000 ms
+Number of Processes: 17
+Number of CPUs: 2 (CPU-1, CPU-2)
+Expected Context switches: 33
+Expected Completed processes: 17
+Expected Total service time: 78500 ms
 
 Verification block of the **original starter**:
 ```
-[Paste the verification block (or the exception/watchdog message) of the starter here]
-```
+? WATCHDOG: the simulation did not finish (38 s). A process was lost, or a CPU is blocked forever, or the 'completed' counter lost an update.
+
+ Context switches (quanta executed)     expected 33       observed 33       ✓
+Completed processes                    expected 17       observed 17       ✓
+Total service time (ms)                expected 78500    observed 78500    ✓
+Busy-waiting polls (must be 0)         expected 0        observed 0        ✓
+✓ All shared values are consistent.
 
 Verification block of **my final version**:
 ```
-[Paste the verification block of your final version here (all lines ✔)]
+Context switches (quanta executed): expected 33
+Completed processes: expected 17
+Total service time (ms): expected 78500
+Busy-waiting polls (must be 0): expected 0
+All shared values are consistent
 ```
 
 **Explanation of the timeline:**
@@ -354,12 +369,22 @@ Verification block of **my final version**:
 
 **Your Answer:** *(3-5 sentences)*
 
-[Write your answer here.]
+I protected the ReadyQueue (list and map) with queueLock, and the three counters
+ in SharedStats (updates and getters) with separate locks: contextSwitchLock,
+ completedLock and serviceTimeLock. One lock per counter lets CPUs update independent 
+ statistics at the same time, but it adds complexity and a risk of deadlock, and the 
+ queue has its own lock so a slow poll() does not block counter updates. Calling 
+ lock() guarantees mutual exclusion, and unlocking in a finally block guarantees 
+ progress. The default ReentrantLock is not fair, so bounded waiting is not 
+ guaranteed, although starvation is unlikely with only 2 CPUs
+
 
 | Critical section (variable / method) | Lock used | Why it needs protection |
 |---|---|---|
-| [e.g., `ReadyQueue.poll()`] | [lock name] | [reason] |
-| [...] | [...] | [...] |
+| | ReadyQueue add, poll, processOf and snapshot | the lock in ReadyQueue | they read and change the shared list and map |
+| incrementContextSwitch and its getter | contextSwitchLock | read, then write on contextSwitchCount |
+| incrementCompletedProcess and its getter | completedProcessLock | read, then write on completedProcessCount |
+| addServiceTime and its getter | serviceTimeLock | read, then write on totalServiceTime |
 
 ## Question 3: Busy Waiting vs Semaphore
 
@@ -369,7 +394,7 @@ Verification block of **my final version**:
 
 **Your Answer:** *(3-5 sentences)*
 
-[Write your answer here.]
+In the starter code, a CPU finding the queue empty repeatedly polled it every 20 ms (Busy-waiting polls was 1165 in my starter run), wasting CPU cycles instead of sleeping. My counting semaphore (processesInQueue) represents the exact number of processes currently waiting in the ready queue; its initial value is 0 because the queue starts empty, and right after main calls add() for all 17 initial processes, its value becomes 17. With the semaphore, an idle CPU enters a blocked state on acquire() until add() calls release(), reducing Busy-waiting polls to 0. Finally, when the last process finishes, the last CPU calls release(totalCPUs) to wake up all remaining CPUs blocked on acquire() so they can exit cleanly; without it, those CPUs would block forever and trigger the WATCHDOG timeout.
 
 ## Question 4: Classical Problems and Deadlock
 
@@ -380,13 +405,22 @@ Verification block of **my final version**:
 **Your Answer:** *(3-5 sentences)*
 
 **Classical problem and roles**:
-[Name the problem; who is the producer, who is the consumer?]
+This is the Producer-Consumer or Bounded-Buffer problem. The main thread acts 
+the initial producer when loading processes, while the CpuWorker threads act as
+both consumers when calling poll to take processes and producers when calling
+add to reenqueue unfinished processes.
 
 **Semaphores for a bounded queue (name and initial value)**:
-[Name the three semaphores and their initial values.]
+We need three semaphores: mutex starting at 1 so only one thread can use the queue 
+ at a time, full starting at 0 to count how many processes are in the queue
+ right now, and empty starting at K to count how many free spaces are left in the queue.
 
 **Deadlock scenario and prevention**:
-[Describe the scenario and the necessary condition you would break.]
+If the queue gets full and a CPU grabs mutex before waiting on empty it will get
+stuck holding the lock while waiting for a free space At the same time other
+CPUs trying to take a process to free up space will get stuck waiting for mutex
+which causes a deadlock We can avoid this by breaking the hold and wait
+condition making sure threads always wait on empty or full before locking mutex
 
 ## Summary
 
